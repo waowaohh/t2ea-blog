@@ -1,0 +1,70 @@
+baseURL = 'https://yourusername.github.io/t2ea-blog/'
+languageCode = 'zh-cn'
+defaultContentLanguage = 'zh'
+title = 'T2EA 技术深度解析'
+theme = 'PaperMod'
+paginate = 10
+
+[params]
+  author = 'T2EA Research'
+  description = 'T2EA - 基于泰勒展开的图像融合网络技术深度解析、优化审计与项目落地文档'
+  defaultTheme = 'auto'
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowToc = true
+
+[params.homeInfoParams]
+  Title = "T2EA 技术深度解析"
+  Content = "基于泰勒展开的图像融合网络（Taylor Expansion Approximation）完整技术剖析，涵盖架构设计、数学原理、损失函数、训练流程与代码审计。"
+
+[[params.socialIcons]]
+  name = "github"
+  url = "https://github.com/yourusername/t2ea-blog"
+
+[params.editPost]
+  URL = "tree/main/content"
+  Text = "在 GitHub 上编辑"
+  appendFilePath = true
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[markup]
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = true
+    lineNos = false
+    noClasses = true
+    style = "monokai"
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+      hardWraps = true
+
+[[menu.main]]
+  identifier = "posts"
+  name = "文章"
+  url = "/posts/"
+  weight = 10
+
+[[menu.main]]
+  identifier = "categories"
+  name = "分类"
+  url = "/categories/"
+  weight = 20
+
+[[menu.main]]
+  identifier = "tags"
+  name = "标签"
+  url = "/tags/"
+  weight = 30
+
+[[menu.main]]
+  identifier = "search"
+  name = "搜索"
+  url = "/search/"
+  weight = 40
