@@ -1,4 +1,4 @@
-baseURL = 'https://yourusername.github.io/t2ea-blog/'
+baseURL = 'https://waowaohh.github.io/t2ea-blog/'
 languageCode = 'zh-cn'
 defaultContentLanguage = 'zh'
 title = 'T2EA 技术深度解析'
@@ -22,7 +22,7 @@ paginate = 10
 
 [[params.socialIcons]]
   name = "github"
-  url = "https://github.com/yourusername/t2ea-blog"
+  url = "https://github.com/waowaohh/t2ea-blog"
 
 [params.editPost]
   URL = "tree/main/content"
