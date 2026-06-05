@@ -2,6 +2,7 @@
 title: "核心模块与数学原理的源码映射"
 date: 2025-06-05
 draft: false
+math: true
 description: "泰勒展开近似网络、双分支特征融合网络、BiSeNet 语义分割网络与 DINOv2 语义引导模块的源码级解析"
 tags: ["泰勒展开", "FusionNetwork", "BiSeNet", "DINOv2", "数学原理"]
 categories: ["核心模块"]
@@ -12,11 +13,15 @@ weight: 2
 
 **数学原理**：
 
-$$f(x) \approx f(x_0) + f'(x_0)(x-x_0) + \frac{f''(x_0)}{2!}(x-x_0)^2 + \cdots$$
+$$
+f(x) \approx f(x_0) + f'(x_0)(x-x_0) + \frac{f''(x_0)}{2!}(x-x_0)^2 + \cdots
+$$
 
 代码中将输入图像 $x$ 在 $x_0=0$ 处展开：
 
-$$\hat{x} = y_0 + y_1 + \frac{y_2}{2!} + \frac{y_3}{3!} + \cdots$$
+$$
+\hat{x} = y_0 + y_1 + \frac{y_2}{2!} + \frac{y_3}{3!} + \cdots
+$$
 
 **源码映射**（`network/TEM.py:57-73`）：
 
@@ -159,6 +164,8 @@ class DinoGuidance(nn.Module):
 
 **DINOv2 Loss**（`loss/DinoLoss.py`）：
 
-$$\mathcal{L}_{dino} = 1 - \cos(\mathbf{z}_f, \mathbf{z}_v)$$
+$$
+\mathcal{L}_{dino} = 1 - \cos(\mathbf{z}_f, \mathbf{z}_v)
+$$
 
 其中 $\mathbf{z}_f = \Phi_{DINOv2}(I_f)$（融合图特征，保留梯度），$\mathbf{z}_v = \text{stopgrad}(\Phi_{DINOv2}(I_v))$（可见光特征，截断梯度）。

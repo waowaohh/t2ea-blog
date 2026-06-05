@@ -2,6 +2,7 @@
 title: "项目整体架构与优化数据流"
 date: 2025-06-05
 draft: false
+math: true
 description: "T2EA 项目的文件调用关系、端到端数据流及 DINOv2 优化切入点定位"
 tags: ["架构", "数据流", "DINOv2"]
 categories: ["技术架构"]

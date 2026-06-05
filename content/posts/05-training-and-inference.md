@@ -2,6 +2,7 @@
 title: "训练与推理流程"
 date: 2025-06-05
 draft: false
+math: true
 description: "数据预处理、三阶段训练逻辑（Taylor→Fusion→Task）、训练编排器与测试推理的完整流程"
 tags: ["训练流程", "推理", "数据预处理", "Pipeline"]
 categories: ["训练与推理"]

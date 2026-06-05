@@ -2,6 +2,7 @@
 title: "关键发现与建议"
 date: 2025-06-05
 draft: false
+math: true
 description: "T2EA 项目已确认的6项设计亮点与4项建议修复优先级汇总"
 tags: ["设计亮点", "Bug修复", "优化建议"]
 categories: ["总结"]

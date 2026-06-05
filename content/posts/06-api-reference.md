@@ -2,6 +2,7 @@
 title: "核心类、函数与优化变量字典"
 date: 2025-06-05
 draft: false
+math: true
 description: "T2EA 项目所有网络模块、损失函数、数据集类、训练脚本关键变量与工具函数的完整参考手册"
 tags: ["API参考", "网络模块", "损失函数", "数据集", "工具函数"]
 categories: ["参考手册"]

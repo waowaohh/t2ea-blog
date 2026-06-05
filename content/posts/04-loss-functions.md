@@ -2,6 +2,7 @@
 title: "损失函数彻底拆解"
 date: 2025-06-05
 draft: false
+math: true
 description: "Stage 1 Taylor Loss、Stage 2 Fusion Loss、Stage 3 三重 Loss 联合优化的完整数学推导与代码映射"
 tags: ["损失函数", "Taylor Loss", "Fusion Loss", "OHEM", "DINO Loss"]
 categories: ["损失函数"]
@@ -23,7 +24,9 @@ class Taylor_loss:
 
 **数学公式**：
 
-$$\mathcal{L}_{Taylor} = \underbrace{\|x - \hat{x}\|_1}_{\text{重建强度}} + \underbrace{\|\nabla x - \nabla \hat{x}\|_1}_{\text{重建梯度}} + 0.3 \cdot \underbrace{\|\nabla x - \max_i(g_i)\|_1}_{\text{高频残差约束}}$$
+$$
+\mathcal{L}_{Taylor} = \underbrace{\|x - \hat{x}\|_1}_{\text{重建强度}} + \underbrace{\|\nabla x - \nabla \hat{x}\|_1}_{\text{重建梯度}} + 0.3 \cdot \underbrace{\|\nabla x - \max_i(g_i)\|_1}_{\text{高频残差约束}}
+$$
 
 **作用**：
 - $\mathcal{L}_{int}$：确保泰勒级数能重建原始图像
@@ -51,7 +54,9 @@ class Fusionloss:
 
 **数学公式**：
 
-$$\mathcal{L}_{fusion} = \underbrace{\|\max(Y_{vis}, I_{IR}) - I_F\|_1}_{\text{强度L1}} + 10 \cdot \underbrace{\|\max(\nabla Y_{vis}, \nabla I_{IR}) - \nabla I_F\|_1}_{\text{梯度L1}}$$
+$$
+\mathcal{L}_{fusion} = \underbrace{\|\max(Y_{vis}, I_{IR}) - I_F\|_1}_{\text{强度L1}} + 10 \cdot \underbrace{\|\max(\nabla Y_{vis}, \nabla I_{IR}) - \nabla I_F\|_1}_{\text{梯度L1}}
+$$
 
 **作用**：
 - 强度损失：融合图应保留两幅输入中的最亮像素（红外热目标通常是高亮的）
@@ -89,7 +94,9 @@ class OhemCELoss:
 
 **数学公式**：
 
-$$\mathcal{L}_{OHEM} = \frac{1}{|\mathcal{S}|} \sum_{i \in \mathcal{S}} \text{CE}(p_i, y_i)$$
+$$
+\mathcal{L}_{OHEM} = \frac{1}{|\mathcal{S}|} \sum_{i \in \mathcal{S}} \text{CE}(p_i, y_i)
+$$
 
 其中 $\mathcal{S}$ 是通过 OHEM 策略选出的困难样本集合：
 - 若 $L_{(n_{min})} > \tau$：$\mathcal{S} = \{i : L_i > \tau\}$
@@ -113,7 +120,9 @@ if use_dino:
 
 **完整数学公式**：
 
-$$\boxed{\mathcal{L}_{total} = \underbrace{\mathcal{L}_{int} + 10\mathcal{L}_{grad}}_{\mathcal{L}_{fusion}} + \underbrace{(\lfloor e/10 \rfloor + 1)}_{\text{渐进权重}} \cdot \underbrace{(\mathcal{L}_{OHEM}^{out} + 0.1\mathcal{L}_{OHEM}^{mid})}_{\mathcal{L}_{seg}} + \underbrace{\lambda_{dino}(1 - \cos(\mathbf{z}_f, \mathbf{z}_v))}_{\mathcal{L}_{dino}}}$$
+$$
+\boxed{\mathcal{L}_{total} = \underbrace{\mathcal{L}_{int} + 10\mathcal{L}_{grad}}_{\mathcal{L}_{fusion}} + \underbrace{(\lfloor e/10 \rfloor + 1)}_{\text{渐进权重}} \cdot \underbrace{(\mathcal{L}_{OHEM}^{out} + 0.1\mathcal{L}_{OHEM}^{mid})}_{\mathcal{L}_{seg}} + \underbrace{\lambda_{dino}(1 - \cos(\mathbf{z}_f, \mathbf{z}_v))}_{\mathcal{L}_{dino}}}
+$$
 
 ---
 

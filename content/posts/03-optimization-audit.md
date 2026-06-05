@@ -2,6 +2,7 @@
 title: "最新优化的硬核评估与代码审计"
 date: 2025-06-05
 draft: false
+math: true
 description: "DINOv2 优化代码精准定位、数学机理分析、6项代码审计发现与显存分析"
 tags: ["代码审计", "DINOv2", "Bug修复", "显存优化"]
 categories: ["代码审计"]
@@ -29,7 +30,9 @@ weight: 3
 
 **数学机理**：
 
-$$\mathcal{L}_{total} = \underbrace{\mathcal{L}_{fusion}}_{\text{强度+梯度}} + \underbrace{(⌊e/10⌋+1) \cdot \mathcal{L}_{seg}}_{\text{语义分割引导}} + \underbrace{\lambda_{dino} \cdot (1 - \cos(\mathbf{z}_f, \mathbf{z}_v))}_{\text{DINO语义一致性}}$$
+$$
+\mathcal{L}_{total} = \underbrace{\mathcal{L}_{fusion}}_{\text{强度+梯度}} + \underbrace{(⌊e/10⌋+1) \cdot \mathcal{L}_{seg}}_{\text{语义分割引导}} + \underbrace{\lambda_{dino} \cdot (1 - \cos(\mathbf{z}_f, \mathbf{z}_v))}_{\text{DINO语义一致性}}
+$$
 
 梯度流向分析：
 - `fusion_image` ← DINO Loss 梯度 → FusionModel 参数更新
