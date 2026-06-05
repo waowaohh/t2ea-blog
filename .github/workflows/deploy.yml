@@ -25,14 +25,21 @@ jobs:
     steps:
       - name: Install Hugo CLI
         run: |
-          wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb
-          sudo dpkg -i ${{ runner.temp }}/hugo.deb
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq hugo
 
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: recursive
+          submodules: true
           fetch-depth: 0
+
+      - name: Setup PaperMod theme
+        run: |
+          if [ ! -d "themes/PaperMod/layouts" ]; then
+            rm -rf themes/PaperMod
+            git clone --depth=1 -b v6.0 https://github.com/adityatelange/hugo-PaperMod.git themes/PaperMod
+          fi
 
       - name: Setup Pages
         id: pages
