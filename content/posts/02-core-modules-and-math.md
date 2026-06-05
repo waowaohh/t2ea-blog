@@ -13,15 +13,15 @@ weight: 2
 
 **数学原理**：
 
-$$
-f(x) \approx f(x_0) + f'(x_0)(x-x_0) + \frac{f''(x_0)}{2!}(x-x_0)^2 + \cdots
-$$
+<div>
+$$f(x) \approx f(x_0) + f'(x_0)(x-x_0) + \frac{f''(x_0)}{2!}(x-x_0)^2 + \cdots$$
+</div>
 
-代码中将输入图像 $x$ 在 $x_0=0$ 处展开：
+代码中将输入图像 \(x\) 在 \(x\_0=0\) 处展开：
 
-$$
-\hat{x} = y_0 + y_1 + \frac{y_2}{2!} + \frac{y_3}{3!} + \cdots
-$$
+<div>
+$$\hat{x} = y_0 + y_1 + \frac{y_2}{2!} + \frac{y_3}{3!} + \cdots$$
+</div>
 
 **源码映射**（`network/TEM.py:57-73`）：
 
@@ -100,7 +100,7 @@ class FusionModel(nn.Module):
         return result
 ```
 
-数学含义：对泰勒分解的每一阶特征分别融合，再以 $1/i!$ 权重重建，保持与泰勒展开的一致性。
+数学含义：对泰勒分解的每一阶特征分别融合，再以 \(1/i!\) 权重重建，保持与泰勒展开的一致性。
 
 ---
 
@@ -164,8 +164,8 @@ class DinoGuidance(nn.Module):
 
 **DINOv2 Loss**（`loss/DinoLoss.py`）：
 
-$$
-\mathcal{L}_{dino} = 1 - \cos(\mathbf{z}_f, \mathbf{z}_v)
-$$
+<div>
+$$\mathcal{L}_{dino} = 1 - \cos(\mathbf{z}_f, \mathbf{z}_v)$$
+</div>
 
-其中 $\mathbf{z}_f = \Phi_{DINOv2}(I_f)$（融合图特征，保留梯度），$\mathbf{z}_v = \text{stopgrad}(\Phi_{DINOv2}(I_v))$（可见光特征，截断梯度）。
+其中 \(\mathbf{z}\_f = \Phi\_{DINOv2}(I\_f)\)（融合图特征，保留梯度），\(\mathbf{z}\_v = \text{stopgrad}(\Phi\_{DINOv2}(I\_v))\)（可见光特征，截断梯度）。

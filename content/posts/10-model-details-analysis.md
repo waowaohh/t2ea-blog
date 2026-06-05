@@ -36,9 +36,9 @@ Taylor_Encoder (总计 ~50K 参数)
 
 **注意**：虽然单个 gradient 模块有 ~65K 参数，但 T2EA 使用**权重共享**：所有阶的 gradient 网络共享同一组参数。因此 Taylor_Encoder 的总参数量约为：
 
-$$
-\text{Params}_{TEM} = \text{Params}_{base} + \text{Params}_{gradient} \approx 39K + 65K = 104K
-$$
+<div>
+$$\text{Params}_{TEM} = \text{Params}_{base} + \text{Params}_{gradient} \approx 39K + 65K = 104K$$
+</div>
 
 但 Stage 1 训练后 TEM 被冻结，实际训练中只存储一份权重。
 
@@ -71,9 +71,9 @@ FusionNetwork (单层，总计 ~200K 参数)
 
 **FusionModel 总参数量**：
 
-$$
-\text{Params}_{Fusion} = 3 \times \text{Params}_{FusionNetwork} \approx 3 \times 200K = 600K
-$$
+<div>
+$$\text{Params}_{Fusion} = 3 \times \text{Params}_{FusionNetwork} \approx 3 \times 200K = 600K$$
+</div>
 
 （3 阶融合，每阶一个 FusionNetwork 实例，但权重共享）
 
@@ -100,13 +100,13 @@ $$
 
 ### 2.1 感受野计算公式
 
-对于卷积网络，第 $l$ 层的感受野大小为：
+对于卷积网络，第 \(l\) 层的感受野大小为：
 
-$$
-RF_l = RF_{l-1} + (k_l - 1) \times \prod_{i=1}^{l-1} s_i
-$$
+<div>
+$$RF_l = RF_{l-1} + (k_l - 1) \times \prod_{i=1}^{l-1} s_i$$
+</div>
 
-其中 $k_l$ 是卷积核大小，$s_i$ 是步长。
+其中 \(k\_l\) 是卷积核大小，\(s\_i\) 是步长。
 
 ### 2.2 Taylor_Encoder 感受野
 
@@ -171,11 +171,11 @@ $$
 2. **解码器大感受野 (27×27)**：膨胀卷积扩大感受野，捕获全局上下文
 3. **膨胀率 d=3 的选择**：在感受野扩大和网格效应之间取得平衡
 
-膨胀卷积的有效核大小为 $k_{eff} = k + (k-1)(d-1)$。当 $k=3, d=3$ 时：
+膨胀卷积的有效核大小为 \(k\_{eff} = k + (k-1)(d-1)\)。当 \(k=3, d=3\) 时：
 
-$$
-k_{eff} = 3 + 2 \times 2 = 7
-$$
+<div>
+$$k_{eff} = 3 + 2 \times 2 = 7$$
+</div>
 
 这提供了 7×7 的有效感受野，而参数量与 3×3 卷积相同。
 
@@ -214,9 +214,9 @@ VIS ──→ TEM ──→ y_VIS ──→ ↑              ↓
 
 **Stage 3 的梯度流向**：
 
-$$
-\frac{\partial \mathcal{L}_{total}}{\partial \theta_{Fusion}} = \underbrace{\frac{\partial \mathcal{L}_{fusion}}{\partial \theta_{Fusion}}}_{\text{融合梯度}} + \underbrace{num \cdot \frac{\partial \mathcal{L}_{seg}}{\partial F} \cdot \frac{\partial F}{\partial \theta_{Fusion}}}_{\text{语义梯度}} + \underbrace{\lambda_{dino} \cdot \frac{\partial \mathcal{L}_{dino}}{\partial z_f} \cdot \frac{\partial z_f}{\partial F} \cdot \frac{\partial F}{\partial \theta_{Fusion}}}_{\text{DINO梯度}}
-$$
+<div>
+$$\frac{\partial \mathcal{L}_{total}}{\partial \theta_{Fusion}} = \underbrace{\frac{\partial \mathcal{L}_{fusion}}{\partial \theta_{Fusion}}}_{\text{融合梯度}} + \underbrace{num \cdot \frac{\partial \mathcal{L}_{seg}}{\partial F} \cdot \frac{\partial F}{\partial \theta_{Fusion}}}_{\text{语义梯度}} + \underbrace{\lambda_{dino} \cdot \frac{\partial \mathcal{L}_{dino}}{\partial z_f} \cdot \frac{\partial z_f}{\partial F} \cdot \frac{\partial F}{\partial \theta_{Fusion}}}_{\text{DINO梯度}}$$
+</div>
 
 **关键观察**：
 
@@ -228,16 +228,16 @@ $$
 
 多任务学习中常见的**梯度冲突**问题：
 
-$$
-\cos(\nabla_{\theta} \mathcal{L}_i, \nabla_{\theta} \mathcal{L}_j) < 0
-$$
+<div>
+$$\cos(\nabla_{\theta} \mathcal{L}_i, \nabla_{\theta} \mathcal{L}_j) < 0$$
+</div>
 
 T2EA 通过以下策略缓解梯度冲突：
 
 | 策略 | 实现方式 | 效果 |
 |------|---------|------|
 | **分阶段训练** | Stage 1/2/3 分别优化 | 避免同时优化冲突目标 |
-| **渐进权重** | $num = \lfloor e/10 \rfloor + 1$ | 逐步引入语义约束 |
+| **渐进权重** | \(num = \lfloor e/10 \rfloor + 1\) | 逐步引入语义约束 |
 | **梯度截断** | `visible_feature.detach()` | 防止 DINO 梯度流向可见光路径 |
 | **参数冻结** | TEM/BiSeNet/DINO 冻结 | 减少可训练参数，简化优化 landscape |
 

@@ -44,6 +44,9 @@ paginate = 10
     [markup.goldmark.renderer]
       unsafe = true
       hardWraps = true
+    [markup.goldmark.extensions]
+      strikethrough = false
+      typographer = false
 
 [[menu.main]]
   identifier = "posts"

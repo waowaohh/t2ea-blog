@@ -1,0 +1,7 @@
+{{- /* Math shortcode: renders LaTeX formula without Markdown processing */ -}}
+{{- $content := .Inner -}}
+{{- if eq (.Get 0) "block" -}}
+$$ {{ $content | safeHTML }} $$
+{{- else -}}
+$ {{ $content | safeHTML }} $
+{{- end -}}

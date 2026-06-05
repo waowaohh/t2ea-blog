@@ -30,9 +30,9 @@ weight: 3
 
 **数学机理**：
 
-$$
-\mathcal{L}_{total} = \underbrace{\mathcal{L}_{fusion}}_{\text{强度+梯度}} + \underbrace{(⌊e/10⌋+1) \cdot \mathcal{L}_{seg}}_{\text{语义分割引导}} + \underbrace{\lambda_{dino} \cdot (1 - \cos(\mathbf{z}_f, \mathbf{z}_v))}_{\text{DINO语义一致性}}
-$$
+<div>
+$$\mathcal{L}_{total} = \underbrace{\mathcal{L}_{fusion}}_{\text{强度+梯度}} + \underbrace{(⌊e/10⌋+1) \cdot \mathcal{L}_{seg}}_{\text{语义分割引导}} + \underbrace{\lambda_{dino} \cdot (1 - \cos(\mathbf{z}_f, \mathbf{z}_v))}_{\text{DINO语义一致性}}$$
+</div>
 
 梯度流向分析：
 - `fusion_image` ← DINO Loss 梯度 → FusionModel 参数更新
@@ -113,7 +113,7 @@ def _select_feature(self, output):
 
 **分析**：`dinov2_vits14` 的 `forward_features` 返回 dict，`x_norm_clstoken` 是 `[B, 384]` 的 CLS token。`DinoSemanticLoss.forward` 中 `.flatten(start_dim=1)` 将其变为 `[B, 384]`，余弦相似度计算正确。**无 Bug**。
 
-但需注意：如果 `input_size=224` 且 patch_size=14，则 `x_norm_patchtokens` 有 $(224/14)^2 = 256$ 个 patch token。如果未来切换到使用 patch tokens，维度会是 `[B, 256, 384]`，mean 后 `[B, 384]`，仍然安全。
+但需注意：如果 `input_size=224` 且 patch_size=14，则 `x_norm_patchtokens` 有 \((224/14)^2 = 256\) 个 patch token。如果未来切换到使用 patch tokens，维度会是 `[B, 256, 384]`，mean 后 `[B, 384]`，仍然安全。
 
 ### 问题 5：Stage 3 验证时 DINO 特征未 detach
 
