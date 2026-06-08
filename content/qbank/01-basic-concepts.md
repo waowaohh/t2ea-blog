@@ -19,15 +19,40 @@ weight: 11
 
 一个完整的闭环控制系统由以下七个基本环节组成：
 
-| 环节 | 功能 |
-|------|------|
-| 被控对象 | 需要被控制的物理系统/设备 |
-| 测量元件 | 测量被控量实际值，输出到比较元件 |
-| 给定元件 | 产生参考输入信号（设定值） |
-| 比较元件 | 计算偏差 \( e = r - y \) |
-| 放大元件 | 放大偏差信号驱动执行元件 |
-| 执行元件 | 直接驱动被控对象，改变被控量 |
-| 校正元件 | 改善系统稳定性和动态性能 |
+<table>
+<thead><tr>
+<th style="text-align:left">环节</th>
+<th style="text-align:left">功能</th>
+</tr></thead><tbody>
+<tr>
+<td style="text-align:left">被控对象</td>
+<td style="text-align:left">需要被控制的物理系统/设备</td>
+</tr>
+<tr>
+<td style="text-align:left">测量元件</td>
+<td style="text-align:left">测量被控量实际值，输出到比较元件</td>
+</tr>
+<tr>
+<td style="text-align:left">给定元件</td>
+<td style="text-align:left">产生参考输入信号（设定值）</td>
+</tr>
+<tr>
+<td style="text-align:left">比较元件</td>
+<td style="text-align:left">计算偏差 \( e = r - y \)</td>
+</tr>
+<tr>
+<td style="text-align:left">放大元件</td>
+<td style="text-align:left">放大偏差信号驱动执行元件</td>
+</tr>
+<tr>
+<td style="text-align:left">执行元件</td>
+<td style="text-align:left">直接驱动被控对象，改变被控量</td>
+</tr>
+<tr>
+<td style="text-align:left">校正元件</td>
+<td style="text-align:left">改善系统稳定性和动态性能</td>
+</tr>
+</tbody></table>
 
 **📝 解析**：
 
@@ -46,12 +71,38 @@ A. 系统型别 \( v<1 \); B. 系统型别 \( v<2 \); C. 系统型别 \( v<3 \);
 
 对于标准单位负反馈系统，稳态误差与系统型别和输入信号类型的关系：
 
-| 系统型别 | 阶跃输入 | 速度输入 \(t\) | **加速度输入 \(t^2\)** |
-|---------|---------|---------------|----------------------|
-| \(v=0\) | \(\frac{1}{1+K_p}\) | \(\infty\) | \(\infty\) |
-| \(v=1\) | \(0\) | \(\frac{1}{K_v}\) | \(\infty\) |
-| \(v=2\) | \(0\) | \(0\) | \(\frac{1}{K_a}\) |
-| \(v\geq3\) | \(0\) | \(0\) | \(0\) |
+<table>
+<thead><tr>
+<th style="text-align:left">系统型别</th>
+<th style="text-align:left">阶跃输入</th>
+<th style="text-align:left">速度输入 \(t\)</th>
+<th style="text-align:left">**加速度输入 \(t^2\)**</th>
+</tr></thead><tbody>
+<tr>
+<td style="text-align:left">\(v=0\)</td>
+<td style="text-align:left">\(\frac{1}{1+K_p}\)</td>
+<td style="text-align:left">\(\infty\)</td>
+<td style="text-align:left">\(\infty\)</td>
+</tr>
+<tr>
+<td style="text-align:left">\(v=1\)</td>
+<td style="text-align:left">\(0\)</td>
+<td style="text-align:left">\(\frac{1}{K_v}\)</td>
+<td style="text-align:left">\(\infty\)</td>
+</tr>
+<tr>
+<td style="text-align:left">\(v=2\)</td>
+<td style="text-align:left">\(0\)</td>
+<td style="text-align:left">\(0\)</td>
+<td style="text-align:left">\(\frac{1}{K_a}\)</td>
+</tr>
+<tr>
+<td style="text-align:left">\(v\geq3\)</td>
+<td style="text-align:left">\(0\)</td>
+<td style="text-align:left">\(0\)</td>
+<td style="text-align:left">\(0\)</td>
+</tr>
+</tbody></table>
 
 从上表可见，\( e_{ss}(t^2) = \infty \) 当且仅当系统型别 \( v \leq 1 \)（即 \( v < 2 \)）。所以选 C。
 
@@ -101,12 +152,33 @@ A. 系统型别 \( v<1 \); B. 系统型别 \( v<2 \); C. 系统型别 \( v<3 \);
 
 时域动态性能指标：
 
-| 指标 | 定义 | 评价维度 |
-|------|------|---------|
-| 上升时间 \( t_r \) | 响应从终值的10%上升到90%的时间 | 快速性 |
-| 峰值时间 \( t_p \) | 响应达到第一个峰值的时间 | 快速性 |
-| 超调量 \( \sigma\% \) | \( \frac{y_{\max}-y_{\infty}}{y_{\infty}}\times 100\% \) | 阻尼程度 |
-| 调节时间 \( t_s \) | 进入终值±2%（或±5%）误差带所需时间 | 综合性指标 |
+<table>
+<thead><tr>
+<th style="text-align:left">指标</th>
+<th style="text-align:left">定义</th>
+<th style="text-align:left">评价维度</th>
+</tr></thead><tbody>
+<tr>
+<td style="text-align:left">上升时间 \( t_r \)</td>
+<td style="text-align:left">响应从终值的10%上升到90%的时间</td>
+<td style="text-align:left">快速性</td>
+</tr>
+<tr>
+<td style="text-align:left">峰值时间 \( t_p \)</td>
+<td style="text-align:left">响应达到第一个峰值的时间</td>
+<td style="text-align:left">快速性</td>
+</tr>
+<tr>
+<td style="text-align:left">超调量 \( \sigma\% \)</td>
+<td style="text-align:left">\( \frac{y_{\max}-y_{\infty}}{y_{\infty}}\times 100\% \)</td>
+<td style="text-align:left">阻尼程度</td>
+</tr>
+<tr>
+<td style="text-align:left">调节时间 \( t_s \)</td>
+<td style="text-align:left">进入终值±2%（或±5%）误差带所需时间</td>
+<td style="text-align:left">综合性指标</td>
+</tr>
+</tbody></table>
 
 ---
 

@@ -29,12 +29,33 @@ weight: 13
 
 **🔑 答案**：
 
-| 指标 | 定义 | 类型 |
-|------|------|------|
-| 上升时间 \(t_r\) | 响应从终值10%→90%时间 | 速度 |
-| 峰值时间 \(t_p\) | 响应达到第一个峰值的时间 | 速度 |
-| 超调量 \(\sigma\%\) | \(\frac{y_{\max}-y_{\infty}}{y_{\infty}}\times100\%\) | 阻尼 |
-| 调节时间 \(t_s\) | 进入终值±2%误差带时间 | 综合 |
+<table>
+<thead><tr>
+<th style="text-align:left">指标</th>
+<th style="text-align:left">定义</th>
+<th style="text-align:left">类型</th>
+</tr></thead><tbody>
+<tr>
+<td style="text-align:left">上升时间 \(t_r\)</td>
+<td style="text-align:left">响应从终值10%→90%时间</td>
+<td style="text-align:left">速度</td>
+</tr>
+<tr>
+<td style="text-align:left">峰值时间 \(t_p\)</td>
+<td style="text-align:left">响应达到第一个峰值的时间</td>
+<td style="text-align:left">速度</td>
+</tr>
+<tr>
+<td style="text-align:left">超调量 \(\sigma\%\)</td>
+<td style="text-align:left">\(\frac{y_{\max}-y_{\infty}}{y_{\infty}}\times100\%\)</td>
+<td style="text-align:left">阻尼</td>
+</tr>
+<tr>
+<td style="text-align:left">调节时间 \(t_s\)</td>
+<td style="text-align:left">进入终值±2%误差带时间</td>
+<td style="text-align:left">综合</td>
+</tr>
+</tbody></table>
 
 - **快速性**由 \(t_r, t_p\) 评价
 - **阻尼程度**由 \(\sigma\%\) 评价
@@ -53,11 +74,28 @@ $$\sigma\% = e^{-\pi\zeta/\sqrt{1-\zeta^2}} \times 100\%$$
 
 **开环增益 \(K\) 的影响**：
 
-| \(K\) 增大 | 优点 | 缺点 |
-|------------|------|------|
-| 稳态误差 \(e_{ss}\) | 减小 | — |
-| 稳定性裕度 | — | 降低（相位裕度减小）|
-| 动态响应 | 响应加快 | 超调量增大，可能振荡 |
+<table>
+<thead><tr>
+<th style="text-align:left">\(K\) 增大</th>
+<th style="text-align:left">优点</th>
+<th style="text-align:left">缺点</th>
+</tr></thead><tbody>
+<tr>
+<td style="text-align:left">稳态误差 \(e_{ss}\)</td>
+<td style="text-align:left">减小</td>
+<td style="text-align:left">—</td>
+</tr>
+<tr>
+<td style="text-align:left">稳定性裕度</td>
+<td style="text-align:left">—</td>
+<td style="text-align:left">降低（相位裕度减小）</td>
+</tr>
+<tr>
+<td style="text-align:left">动态响应</td>
+<td style="text-align:left">响应加快</td>
+<td style="text-align:left">超调量增大，可能振荡</td>
+</tr>
+</tbody></table>
 
 **系统型别 \(v\) 的影响**：增加积分环节 \(1/s\)——
 - 提高稳态精度（能跟踪更高阶输入信号）

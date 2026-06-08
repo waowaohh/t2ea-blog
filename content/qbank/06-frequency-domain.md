@@ -29,11 +29,28 @@ weight: 16
 
 典型开环对数幅频特性曲线分三个频段：
 
-| 频段 | 主要影响 | 特征 |
-|------|---------|------|
-| 低频段 | 稳态性能 | 斜率为 \(-20v\) dB/dec，高度反映开环增益 \(K\) |
-| 中频段 | 动态性能与稳定性 | 穿越频率 \(\omega_c\) 的位置、斜率与长度 |
-| 高频段 | 抗噪声能力 | 斜率越陡，抗高频噪声能力越强 |
+<table>
+<thead><tr>
+<th style="text-align:left">频段</th>
+<th style="text-align:left">主要影响</th>
+<th style="text-align:left">特征</th>
+</tr></thead><tbody>
+<tr>
+<td style="text-align:left">低频段</td>
+<td style="text-align:left">稳态性能</td>
+<td style="text-align:left">斜率为 \(-20v\) dB/dec，高度反映开环增益 \(K\)</td>
+</tr>
+<tr>
+<td style="text-align:left">中频段</td>
+<td style="text-align:left">动态性能与稳定性</td>
+<td style="text-align:left">穿越频率 \(\omega_c\) 的位置、斜率与长度</td>
+</tr>
+<tr>
+<td style="text-align:left">高频段</td>
+<td style="text-align:left">抗噪声能力</td>
+<td style="text-align:left">斜率越陡，抗高频噪声能力越强</td>
+</tr>
+</tbody></table>
 
 - 低频段越平（高度越大、积分环节越多）→ 稳态精度越好
 - 中频段以 \(-20\) dB/dec斜率穿越0dB线且有一定宽度 → 稳定性好

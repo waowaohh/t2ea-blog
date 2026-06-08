@@ -1,13 +1,13 @@
 baseURL = 'https://waowaohh.github.io/t2ea-blog/'
 languageCode = 'zh-cn'
 defaultContentLanguage = 'zh'
-title = 'T2EA 技术深度解析'
+title = 'T2EA 技术博客 & 自动控制题库'
 theme = 'PaperMod'
 paginate = 10
 
 [params]
   author = 'T2EA Research'
-  description = 'T2EA - 基于泰勒展开的图像融合网络技术深度解析、优化审计与项目落地文档'
+  description = 'T2EA - 基于泰勒展开的图像融合网络技术深度解析 + 自动控制原理 & 微型计算机原理题库（含答案解析）'
   defaultTheme = 'auto'
   ShowReadingTime = true
   ShowShareButtons = false
@@ -17,8 +17,8 @@ paginate = 10
   ShowToc = true
 
 [params.homeInfoParams]
-  Title = "T2EA 技术深度解析"
-  Content = "基于泰勒展开的图像融合网络（Taylor Expansion Approximation）完整技术剖析，涵盖架构设计、数学原理、损失函数、训练流程与代码审计。"
+  Title = "T2EA 技术博客"
+  Content = "**T2EA 技术深度解析**：基于泰勒展开的图像融合网络完整技术剖析。\n\n**📚 自动控制原理 & 微型计算机原理题库**：220道精选题目，含完整答案、详细解析与讲解，助力期末复习与考研备考。"
 
 [[params.socialIcons]]
   name = "github"
@@ -53,6 +53,12 @@ paginate = 10
   name = "文章"
   url = "/posts/"
   weight = 10
+
+[[menu.main]]
+  identifier = "qbank"
+  name = "题库"
+  url = "/qbank/"
+  weight = 15
 
 [[menu.main]]
   identifier = "categories"

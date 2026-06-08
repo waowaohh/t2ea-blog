@@ -234,12 +234,33 @@ $$\cos(\nabla_{\theta} \mathcal{L}_i, \nabla_{\theta} \mathcal{L}_j) < 0$$
 
 T2EA 通过以下策略缓解梯度冲突：
 
-| 策略 | 实现方式 | 效果 |
-|------|---------|------|
-| **分阶段训练** | Stage 1/2/3 分别优化 | 避免同时优化冲突目标 |
-| **渐进权重** | \(num = \lfloor e/10 \rfloor + 1\) | 逐步引入语义约束 |
-| **梯度截断** | `visible_feature.detach()` | 防止 DINO 梯度流向可见光路径 |
-| **参数冻结** | TEM/BiSeNet/DINO 冻结 | 减少可训练参数，简化优化 landscape |
+<table>
+<thead><tr>
+<th style="text-align:left">策略</th>
+<th style="text-align:left">实现方式</th>
+<th style="text-align:left">效果</th>
+</tr></thead><tbody>
+<tr>
+<td style="text-align:left">**分阶段训练**</td>
+<td style="text-align:left">Stage 1/2/3 分别优化</td>
+<td style="text-align:left">避免同时优化冲突目标</td>
+</tr>
+<tr>
+<td style="text-align:left">**渐进权重**</td>
+<td style="text-align:left">\(num = \lfloor e/10 \rfloor + 1\)</td>
+<td style="text-align:left">逐步引入语义约束</td>
+</tr>
+<tr>
+<td style="text-align:left">**梯度截断**</td>
+<td style="text-align:left">`visible_feature.detach()`</td>
+<td style="text-align:left">防止 DINO 梯度流向可见光路径</td>
+</tr>
+<tr>
+<td style="text-align:left">**参数冻结**</td>
+<td style="text-align:left">TEM/BiSeNet/DINO 冻结</td>
+<td style="text-align:left">减少可训练参数，简化优化 landscape</td>
+</tr>
+</tbody></table>
 
 ### 3.4 梯度范数监控建议
 

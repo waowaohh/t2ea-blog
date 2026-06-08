@@ -30,12 +30,33 @@ $$f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(x_0)}{n!}(x-x_0)^n$$
 
 在图像处理中，这对应于：
 
-| 泰勒阶数 | 数学含义 | 图像含义 |
-|---------|---------|---------|
-| \(n=0\) | \(f(x\_0)\) | 低频语义/基础亮度 |
-| \(n=1\) | \(f'(x\_0)(x-x\_0)\) | 一阶梯度/边缘信息 |
-| \(n=2\) | \(\frac{f''(x_0)}{2!}(x-x\_0)^2\) | 二阶曲率/纹理细节 |
-| \(n \geq 3\) | 高阶项 | 更精细的纹理/噪声 |
+<table>
+<thead><tr>
+<th style="text-align:left">泰勒阶数</th>
+<th style="text-align:left">数学含义</th>
+<th style="text-align:left">图像含义</th>
+</tr></thead><tbody>
+<tr>
+<td style="text-align:left">\(n=0\)</td>
+<td style="text-align:left">\(f(x\_0)\)</td>
+<td style="text-align:left">低频语义/基础亮度</td>
+</tr>
+<tr>
+<td style="text-align:left">\(n=1\)</td>
+<td style="text-align:left">\(f'(x\_0)(x-x\_0)\)</td>
+<td style="text-align:left">一阶梯度/边缘信息</td>
+</tr>
+<tr>
+<td style="text-align:left">\(n=2\)</td>
+<td style="text-align:left">\(\frac{f''(x_0)}{2!}(x-x\_0)^2\)</td>
+<td style="text-align:left">二阶曲率/纹理细节</td>
+</tr>
+<tr>
+<td style="text-align:left">\(n \geq 3\)</td>
+<td style="text-align:left">高阶项</td>
+<td style="text-align:left">更精细的纹理/噪声</td>
+</tr>
+</tbody></table>
 
 **关键洞察**：泰勒展开将图像分解为**不同频率尺度**的分量，使得融合网络可以针对每个频率尺度设计不同的融合策略。
 
@@ -127,13 +148,38 @@ $$\min_{p(t|x)} I(X; T) - \beta I(T; Y)$$
 
 泰勒展开与小波变换都是多分辨率分析工具，但有本质区别：
 
-| 特性 | 小波变换 | 泰勒展开 |
-|------|---------|---------|
-| 基函数 | 固定的尺度函数 + 小波函数 | 数据驱动的神经网络 |
-| 频率划分 | 固定频带（二进划分） | 自适应（由网络学习） |
-| 局部性 | 时频局部化 | 空间局部化（卷积实现） |
-| 可学习性 | 不可学习 | 端到端可学习 |
-| 计算复杂度 | \(O(N)\)（快速小波变换） | \(O(N \cdot C^2)\)（卷积网络） |
+<table>
+<thead><tr>
+<th style="text-align:left">特性</th>
+<th style="text-align:left">小波变换</th>
+<th style="text-align:left">泰勒展开</th>
+</tr></thead><tbody>
+<tr>
+<td style="text-align:left">基函数</td>
+<td style="text-align:left">固定的尺度函数 + 小波函数</td>
+<td style="text-align:left">数据驱动的神经网络</td>
+</tr>
+<tr>
+<td style="text-align:left">频率划分</td>
+<td style="text-align:left">固定频带（二进划分）</td>
+<td style="text-align:left">自适应（由网络学习）</td>
+</tr>
+<tr>
+<td style="text-align:left">局部性</td>
+<td style="text-align:left">时频局部化</td>
+<td style="text-align:left">空间局部化（卷积实现）</td>
+</tr>
+<tr>
+<td style="text-align:left">可学习性</td>
+<td style="text-align:left">不可学习</td>
+<td style="text-align:left">端到端可学习</td>
+</tr>
+<tr>
+<td style="text-align:left">计算复杂度</td>
+<td style="text-align:left">\(O(N)\)（快速小波变换）</td>
+<td style="text-align:left">\(O(N \cdot C^2)\)（卷积网络）</td>
+</tr>
+</tbody></table>
 
 **T2EA 的优势**：泰勒分量是**数据自适应**的，网络可以学习最优的分解方式，而不是依赖固定的基函数。
 

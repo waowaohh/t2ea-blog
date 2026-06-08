@@ -65,11 +65,24 @@ $$G_c(s) = \frac{1+\beta Ts}{1+Ts}, \quad \beta<1$$
 
 校正方式取决于期望改进的目标：
 
-| 期望改进 | 推荐校正方式 |
-|---------|------------|
-| 动态性能（减小 \(\sigma\%\)） | 超前校正/PD |
-| 稳态精度（减小 \(e_{ss}\)） | 滞后校正/PI |
-| 二者兼顾 | 滞后-超前校正/PID |
+<table>
+<thead><tr>
+<th style="text-align:left">期望改进</th>
+<th style="text-align:left">推荐校正方式</th>
+</tr></thead><tbody>
+<tr>
+<td style="text-align:left">动态性能（减小 \(\sigma\%\)）</td>
+<td style="text-align:left">超前校正/PD</td>
+</tr>
+<tr>
+<td style="text-align:left">稳态精度（减小 \(e_{ss}\)）</td>
+<td style="text-align:left">滞后校正/PI</td>
+</tr>
+<tr>
+<td style="text-align:left">二者兼顾</td>
+<td style="text-align:left">滞后-超前校正/PID</td>
+</tr>
+</tbody></table>
 
 ---
 

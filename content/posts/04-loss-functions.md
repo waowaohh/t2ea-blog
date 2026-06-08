@@ -128,13 +128,44 @@ $$\boxed{\mathcal{L}_{total} = \underbrace{\mathcal{L}_{int} + 10\mathcal{L}_{gr
 
 ## 4.4 Loss 平衡机制分析
 
-| Loss | 权重 | 量级估计 | 作用 |
-|------|------|----------|------|
-| \(\mathcal{L}\_{int}\) | 1 | ~0.01-0.05 | 保留最亮像素（红外目标+可见光细节） |
-| \(\mathcal{L}\_{grad}\) | 10 | ~0.001-0.01 | 保留边缘结构 |
-| \(\mathcal{L}\_{seg}^{out}\) | num (1→6) | ~0.5-2.0 | 分割精度引导融合质量 |
-| \(\mathcal{L}\_{seg}^{mid}\) | 0.1×num | ~0.05-0.2 | 辅助分割监督 |
-| \(\mathcal{L}\_{dino}\) | 0.01 | ~0.001-0.01 | 语义一致性正则 |
+<table>
+<thead><tr>
+<th style="text-align:left">Loss</th>
+<th style="text-align:left">权重</th>
+<th style="text-align:left">量级估计</th>
+<th style="text-align:left">作用</th>
+</tr></thead><tbody>
+<tr>
+<td style="text-align:left">\(\mathcal{L}\_{int}\)</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">~0.01-0.05</td>
+<td style="text-align:left">保留最亮像素（红外目标+可见光细节）</td>
+</tr>
+<tr>
+<td style="text-align:left">\(\mathcal{L}\_{grad}\)</td>
+<td style="text-align:left">10</td>
+<td style="text-align:left">~0.001-0.01</td>
+<td style="text-align:left">保留边缘结构</td>
+</tr>
+<tr>
+<td style="text-align:left">\(\mathcal{L}\_{seg}^{out}\)</td>
+<td style="text-align:left">num (1→6)</td>
+<td style="text-align:left">~0.5-2.0</td>
+<td style="text-align:left">分割精度引导融合质量</td>
+</tr>
+<tr>
+<td style="text-align:left">\(\mathcal{L}\_{seg}^{mid}\)</td>
+<td style="text-align:left">0.1×num</td>
+<td style="text-align:left">~0.05-0.2</td>
+<td style="text-align:left">辅助分割监督</td>
+</tr>
+<tr>
+<td style="text-align:left">\(\mathcal{L}\_{dino}\)</td>
+<td style="text-align:left">0.01</td>
+<td style="text-align:left">~0.001-0.01</td>
+<td style="text-align:left">语义一致性正则</td>
+</tr>
+</tbody></table>
 
 **平衡策略**：
 1. **梯度 Loss 权重 10**：因为 Sobel 梯度值通常比像素值小一个量级，乘以 10 使其与强度 Loss 在同一量级
